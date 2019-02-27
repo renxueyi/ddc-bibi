@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable;
 /***
  * @author renxueyi
  */
-public class HelloWorld {
+public class ObservableTest {
 
     public static void main(String[] args) {
 
