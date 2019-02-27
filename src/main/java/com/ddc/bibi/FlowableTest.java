@@ -15,6 +15,7 @@ public class FlowableTest {
             System.out.println("~~~~~~~~~~~~");
             emitter.onNext("flowable 2");
             System.out.println("~~~~~~~~~~~~");
+            emitter.onComplete();
         },BackpressureStrategy.BUFFER);
 
         flowable.subscribe(new FlowableSubscriber<String>() {
@@ -25,6 +26,7 @@ public class FlowableTest {
             public void onSubscribe(Subscription s) {
                 System.out.println("onSubscribe");
                 subscription = s;
+                //No events will be sent by a {@link Publisher} until demand is signaled via this method.
                 s.request(100);
 
             }

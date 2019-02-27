@@ -2,7 +2,6 @@ package com.ddc.bibi;
 
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -13,12 +12,16 @@ public class HelloWorld {
 
     public static void main(String[] args) {
 
-        Observable.create((ObservableOnSubscribe<Integer>) emitter -> {
+        Observable<Integer> observable =  Observable.create(emitter -> {
         emitter.onNext(1);
         System.out.println("Hello world");
         emitter.onNext(2);
         System.out.println("Hello world");
-        }).subscribe(new Observer<Integer>() {
+
+        emitter.onComplete();
+        });
+
+        observable.subscribe(new Observer<Integer>() {
             private Integer a;
             private Disposable disposable;
             @Override
